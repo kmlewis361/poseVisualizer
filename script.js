@@ -66,12 +66,26 @@ gridGroup.selectAll(".y-label")
     .text(d => d);
 
 // Create robot with camera
-const robotSize = cellSize * 0.8;
+const robotSize = cellSize * 0.6;  // Adjusted size to match AprilTag
 const robotGroup = gridGroup.append("g").attr("class", "robot-group");
 
-const robot = robotGroup.append("path")
+// Create robot as a square
+const robot = robotGroup.append("rect")
     .attr("class", "robot")
-    .attr("d", d3.symbol().type(d3.symbolTriangle).size(robotSize * 20));
+    .attr("width", robotSize)
+    .attr("height", robotSize)
+    .attr("x", -robotSize/2)  // Center the square
+    .attr("y", -robotSize/2);
+
+// Add direction indicator to robot
+robotGroup.append("line")
+    .attr("class", "direction-indicator")
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", robotSize/2)
+    .attr("y2", 0)
+    .style("stroke", "white")
+    .style("stroke-width", 2);
 
 // Add camera to robot (represented as a small rectangle)
 const cameraGroup = robotGroup.append("g").attr("class", "camera-group");
