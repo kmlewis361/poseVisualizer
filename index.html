@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robot on Grid</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <svg id="grid"></svg>
+        <div class="controls">
+            <div class="control-group">
+                <h3>Robot Controls</h3>
+                <div class="input-group">
+                    <label>X: 
+                        <input type="number" id="robot-x" value="2.5" step="0.01" min="0" max="10">
+                        <input type="range" id="robot-x-slider" value="2.5" step="0.01" min="0" max="10">
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label>Y: 
+                        <input type="number" id="robot-y" value="2.5" step="0.01" min="0" max="10">
+                        <input type="range" id="robot-y-slider" value="2.5" step="0.01" min="0" max="10">
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label>Rotation: <input type="number" id="robot-rotation" value="0" step="1" min="0" max="360"></label>
+                </div>
+                <h4>Camera Offset</h4>
+                <div class="input-group">
+                    <label>X: <input type="number" id="camera-x" value="0.1" step="0.01" min="-0.5" max="0.5"></label>
+                </div>
+                <div class="input-group">
+                    <label>Y: <input type="number" id="camera-y" value="0" step="0.01" min="-0.5" max="0.5"></label>
+                </div>
+                <div class="input-group">
+                    <label>Rotation: <input type="number" id="camera-rotation" value="0" step="1" min="-180" max="180"></label>
+                </div>
+            </div>
+            <div class="control-group">
+                <h3>AprilTag Controls</h3>
+                <div class="input-group">
+                    <label>X: 
+                        <input type="number" id="tag-x" value="5.5" step="0.01" min="0" max="10">
+                        <input type="range" id="tag-x-slider" value="5.5" step="0.01" min="0" max="10">
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label>Y: 
+                        <input type="number" id="tag-y" value="5.5" step="0.01" min="0" max="10">
+                        <input type="range" id="tag-y-slider" value="5.5" step="0.01" min="0" max="10">
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label>Rotation: <input type="number" id="tag-rotation" value="0" step="1" min="0" max="360"></label>
+                </div>
+                <h4>Target Offset</h4>
+                <div class="input-group">
+                    <label>X: <input type="number" id="target-x" value="0" step="0.01" min="-0.5" max="0.5"></label>
+                </div>
+                <div class="input-group">
+                    <label>Y: <input type="number" id="target-y" value="0" step="0.01" min="-0.5" max="0.5"></label>
+                </div>
+                <div class="input-group">
+                    <label>Rotation: <input type="number" id="target-rotation" value="0" step="1" min="-180" max="180"></label>
+                </div>
+            </div>
+        </div>
+        <div class="readouts">
+            <div class="control-group">
+                <h3>Vector Components</h3>
+                <div class="vector-controls">
+                    <div class="input-group">
+                        <label>From: 
+                            <select id="vector-source">
+                                <option value="robot">Robot Center</option>
+                                <option value="camera" selected>Camera</option>
+                                <option value="tag">AprilTag Center</option>
+                                <option value="target">Target</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label>To: 
+                            <select id="vector-destination">
+                                <option value="robot">Robot Center</option>
+                                <option value="camera">Camera</option>
+                                <option value="tag">AprilTag Center</option>
+                                <option value="target" selected>Target</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="readout-group">
+                    <h4>Grid (Global) Coordinates</h4>
+                    <div class="readout">
+                        <label>ΔX: <span id="global-delta-x">0.00</span></label>
+                        <label>ΔY: <span id="global-delta-y">0.00</span></label>
+                        <label>Distance: <span id="global-distance">0.00</span></label>
+                        <label>Angle: <span id="global-angle">0.00</span>°</label>
+                    </div>
+                </div>
+                <div class="readout-group">
+                    <h4>Robot (Local) Coordinates</h4>
+                    <div class="readout">
+                        <label>ΔX: <span id="local-delta-x">0.00</span></label>
+                        <label>ΔY: <span id="local-delta-y">0.00</span></label>
+                        <label>Distance: <span id="local-distance">0.00</span></label>
+                        <label>Angle: <span id="local-angle">0.00</span>°</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
